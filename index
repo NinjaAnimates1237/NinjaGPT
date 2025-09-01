@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NinjaGPT Scratch Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #000;
+      --text-color: #fff;
+      --button-bg: #111;
+      --button-text: #fff;
+      --button-hover-bg: #fff;
+      --button-hover-text: #000;
+      --card-bg: #222;
+      --card-border: #fff;
+      --heading-glow: rgba(255,255,255,0.7);
+    }
+
+    body.light {
+      --bg-color: #f0f0f0;
+      --text-color: #111;
+      --button-bg: #ddd;
+      --button-text: #111;
+      --button-hover-bg: #111;
+      --button-hover-text: #fff;
+      --card-bg: #fff;
+      --card-border: #111;
+      --heading-glow: rgba(0,0,0,0.3);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Noto Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+      padding: 50px 20px 20px 20px;
+      transition: all 0.5s ease;
+    }
+
+    h1, h2 {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    h1.visible, h2.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px var(--heading-glow);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 30px 0 10px 0;
+      text-shadow: 0 0 6px var(--heading-glow);
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+      color: var(--text-color);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background: var(--button-bg);
+      color: var(--button-text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+
+    .toggle-btn:hover {
+      background: var(--button-hover-bg);
+      color: var(--button-hover-text);
+    }
+
+    .project-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .project-images.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-images img {
+      width: 250px;
+      border-radius: 15px;
+      border: 3px solid var(--card-border);
+      background: var(--card-bg);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .project-images img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255,255,255,0.7);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      max-width: 500px;
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .buttons.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .buttons button {
+      background: var(--button-bg);
+      color: var(--button-text);
+      border: 2px solid var(--card-border);
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background: var(--button-hover-bg);
+      color: var(--button-hover-text);
+    }
+
+    iframe {
+      border-radius: 15px;
+      border: 3px solid var(--card-border);
+      max-width: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    iframe.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-btn" onclick="toggleMode()">Toggle Light/Dark Mode</button>
+
+  <!-- Header -->
+  <h1 class="fade">NinjaGPT Scratch Project</h1>
+  <p class="fade">Welcome to the NinjaGPT Scratch showcase! Explore the project screenshots, learn how it works, and play it directly on Scratch.</p>
+
+  <!-- Embedded Project -->
+  <h2 class="fade">Play NinjaGPT</h2>
+  <iframe class="fade" src="https://scratch.mit.edu/projects/1208940557/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no"></iframe>
+
+  <!-- Screenshot Gallery -->
+  <h2 class="fade">Screenshots</h2>
+  <div class="project-images fade">
+    <a href="https://scratch.mit.edu/projects/1208940557/" target="_blank">
+      <img src="screenshot1.png" alt="Main Chat Screen" title="Main chat screen of NinjaGPT">
+    </a>
+    <a href="https://scratch.mit.edu/projects/1208940557/" target="_blank">
+      <img src="screenshot2.png" alt="Keyword Responses" title="NinjaGPT responding to keywords">
+    </a>
+    <a href="https://scratch.mit.edu/projects/1208940557/" target="_blank">
+      <img src="screenshot3.png" alt="Cozy Interface" title="Cozy interface and fun animations">
+    </a>
+  </div>
+
+  <!-- Buttons / Features -->
+  <div class="buttons fade">
+    <button onclick="alert('NinjaGPT responds to keywords using pre-set logic in Scratch.')">How it Works</button>
+    <button onclick="alert('Built entirely in Scratch using if-then blocks and variables.')">Project Info</button>
+    <button onclick="window.open('https://scratch.mit.edu/projects/1208940557/', '_blank')">Play on Scratch</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Created by Adrian Joji | NinjaGPT Scratch Project</p>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light');
+    }
+
+    // Animate elements on scroll
+    const fadeElements = document.querySelectorAll('.fade');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
+
